@@ -34,14 +34,6 @@ const Canvas: FC<CanvasProps> = ({children, className}) => {
             }
         })
     }
-    
-    const registerChildPan = (childPan: Recognizer) => {
-        if (canvasPanRef.current) {
-            
-            //canvasPanRef.current.requireFailure(childPan);
-            //canvasPanRef.current.
-        }
-    }
 
     useEffect(() => {
         if (outerReference.current === null || innerReference.current === null) {
