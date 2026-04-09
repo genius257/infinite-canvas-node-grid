@@ -47,14 +47,11 @@ const Canvas: FC<CanvasProps> = ({children, className}) => {
         }
 
         const hammer = new Hammer.Manager(div);
-        const pan = new Hammer.Pan({threshold: 0, pointers: 0});
+        const pan = new Hammer.Pan({threshold: 0, pointers: 0, enable: () => isPanAllowed.current === true});
         hammer.add(pan);
         canvasPanRef.current = pan;
         let isPanning = false;
         hammer.on('panstart panmove', (event) => {
-            if (isPanAllowed.current === false) {
-                return;
-            };
             isPanning = true;
 
             const x = position.current.x + event.deltaX;
