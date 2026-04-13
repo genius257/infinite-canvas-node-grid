@@ -1,5 +1,5 @@
 import { FC, ReactNode, useContext, useEffect, useRef } from "react";
-import HammerContext from "./HammerContext";
+import CanvasContext from "./CanvasContext";
 import { Manager, Pan } from "hammerjs";
 import { twMerge } from "tailwind-merge";
 
@@ -16,7 +16,7 @@ type Point = {
 const Box: FC<BoxProps> = ({children, className}) => {
     const reference = useRef<HTMLDivElement|null>(null);
     const position = useRef<Point>({x: 0, y: 0});
-    const hammerContext = useContext(HammerContext);
+    const hammerContext = useContext(CanvasContext);
 
     useEffect(() => {
         const div = reference.current;
@@ -54,7 +54,7 @@ const Box: FC<BoxProps> = ({children, className}) => {
     }
 
     return (
-        <HammerContext value={{registerException}}>
+        <CanvasContext value={{registerException}}>
             <div
                 className={className}
                 ref={reference}
@@ -92,7 +92,7 @@ const Box: FC<BoxProps> = ({children, className}) => {
                 <div className="peer/left absolute -left-2 top-0 h-full w-6 cursor-pointer z-10" />
                 <div className="absolute -left-2 top-1/2 h-4 w-4 -translate-y-1/2 rounded-full bg-blue-500 opacity-0 transition-opacity peer-hover/left:opacity-100 hover:opacity-100 z-20 cursor-crosshair" />
             </div>
-        </HammerContext>
+        </CanvasContext>
     );
 };
 

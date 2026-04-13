@@ -1,6 +1,6 @@
 import Hammer, { Pan, Recognizer } from "hammerjs";
 import { FC, ReactNode, useEffect, useRef } from "react";
-import HammerContext from "./HammerContext";
+import CanvasContext, { CanvasRelationship } from "./CanvasContext";
 import { twJoin, twMerge } from 'tailwind-merge'
 
 type CanvasProps = {
@@ -76,13 +76,13 @@ const Canvas: FC<CanvasProps> = ({children, className}) => {
     className = twJoin('bg-blueprint', twMerge('overflow-hidden', className));
 
     return (
-        <HammerContext value={{ registerException }}>
+        <CanvasContext value={{ registerException, registerRelationship }}>
             <div className={className} ref={outerReference}>
                 <div className='w-full h-full' ref={innerReference}>
                     {children}
                 </div>
             </div>
-        </HammerContext>
+        </CanvasContext>
     );
 };
 
